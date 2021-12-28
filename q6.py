@@ -5,10 +5,10 @@ file = open('file_name.txt', 'r')
 string = file.read()
 file.close()
 
-patternA = "[0-2021]/[01-12]/[01-31]" # yyyy mm dd
-patternB = "[01-12]/[01-31]/[0000-2021]" # mm dd yyyy
-patternC = "[0000-2021]/[01-12]/[01-31]" # dd mm yyyy
-patternC = "[0-31] [months] [0000-2021]" # dd month yyyy
+patternA = "[01][0-9][0-9][0-9]|20[01][0-9]|202[01]/0[1-9]|[01][12]/0[1-9]|[12][0-9]|3[01]" # yyyy mm dd
+patternB = "0[1-9]|[01][12]/0[1-9]|[12][0-9]|3[01]/[01][0-9][0-9][0-9]|20[01][0-9]|202[01]" # mm dd yyyy
+patternC = "[01][0-9][0-9][0-9]|20[01][0-9]|202[01]/0[1-9]|[01][12]/0[1-9]|[12][0-9]|3[01]" # dd mm yyyy
+patternD = "0[1-9]|[12][0-9]|3[01] \D\D\D|\D\D\D\D [01][0-9][0-9][0-9]|20[01][0-9]|202[01]" # dd month yyyy
 
 a = len(re.findall(patternA, string))
 b = len(re.findall(patternB, string))
