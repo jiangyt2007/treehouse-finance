@@ -1,27 +1,29 @@
-file <- readxl('filename.xlsx')
+file <- readxl('2016_data.xlsx')
 
 # empty df to store the returns. Same size as file
 returns <- data.frame(matrix(ncol = ncol(file), nrow = nrow(file)))
 
-for (stock_idx in file[2nd col to last col]) {
+for (stock_idx in 2:ncol(file)) {
     # iterate through cols (the different stocks)
-    for (date_idx in file[2nd row to last row]) {
+    for (date_idx in 2:nrow(file)) {
         # iterate through rows (each day)
         
         # today's returns = (today - yesterday) / yesterday
-        curr_returns = (file[stock_idx][date_idx] - file[stock_idx][date_idx - 1]) / file[stock_idx][date_idx - 1]
+        curr_returns = (file[date_idx, stock_idx] - file[date_idx - 1, stock_idx]) / file[date_idx - 1, stock_idx]
         
         # store in returns dataframe
-        df[stock_idx][date_idx] = curr_returns
+        df[date_idx][stock_idx] = curr_returns
     }
 }
 
 # empty vector to store VaR
 var95 <- c()
 
+returns2 <- returns[-1] # remove 1st row of NA values
+
 # 5% quantile for each stock
-for (stock_idx in file[2nd to last col]) {
-    var = quantile(returns[stock_idx], probs = 0.05)
+for (stock_idx in 2 : ncol(file)) {
+    var = quantile(returns2[, stock_idx], probs = 0.05)
     var95[stock_idx - 1] = var
 }
 
