@@ -32,9 +32,8 @@ print(f"Number of python files: {len(py_files)}") # qn5a
 num_code_lines = 0
 num_comment_lines = 0
 num_functions = 0
-      
-for dirpath, dirnames, filenames in os.walk("."):
-  for (filename in filenames) :
+for dirpath, dirnames, filenames in tuple(os.walk(".")):
+  for (filename in filenames):
       if is_py(filename):
         lines = get_num_lines(filename) # [num of code lines, num of comment lines, num of functions]
         num_code_lines += lines[0]
@@ -47,3 +46,24 @@ Number of lines of comments: {num_comments_lines}
 """) #qn5b
 
 print(f"Number of functions defined: {num_functions}") #qn5c
+
+#qn5e
+def get_size(pathname):
+  size = 0
+  for dirpath, dirnames, filenames in tuple(os.walk(pathname)):
+    for filename in filenames:
+      fp = os.path.join(dirpath, filename)
+      if not os.path.islink(fp):
+        size += os.path.getsize(fp)
+  return size
+
+subdirectories1 = tuple(os.walk("."))[1] # list of folders
+for subdir1 in subdirectories1:
+  os.chdir(".\" + subdir) # cd into subdir1
+  subdirectories2 = os.walk(".\\" + subdir) # list of folders in current subdir1
+  size1 = 0 
+  for (subdir2 in subdirectories2) :
+    size2 = get_size(os.getcwd()) # size of current current subdir2
+    print(f"{subdir2}: {size}") # prints name of subdir2 and its size
+    size1 += size1
+  print(f"{subdir1}: {size1}") # prints name of subdir1 and its size
