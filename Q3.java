@@ -1,3 +1,6 @@
+import java.util.HashMap;
+import java.util.ArrayList;
+
 class Qn3 {
   public static void main(String[] args) {
     Scanner sc = new Scanner(System.in);
