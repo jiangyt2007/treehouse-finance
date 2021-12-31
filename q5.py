@@ -63,7 +63,7 @@ for subdir1 in subdirectories1:
   subdirectories2 = os.walk(".\\" + subdir) # list of folders in current subdir1
   size1 = 0 
   for (subdir2 in subdirectories2) :
-    size2 = get_size(os.getcwd()) # size of current current subdir2
-    print(f"{subdir2}: {size}") # prints name of subdir2 and its size
-    size1 += size1
+    size2 = get_size(os.getcwd()) # size of current subdir2
+    print(f"{subdir2}: {size2}") # prints name of subdir2 and its size
+    size1 += size2
   print(f"{subdir1}: {size1}") # prints name of subdir1 and its size
