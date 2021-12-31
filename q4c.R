@@ -8,6 +8,7 @@
 #   a + b + ... + g = 1
 #   a, b, ..., g >= 0
 library(lpSolve)
+source("./q4a_q4b.R")
 
 # create monthly_returns dataframe
 monthly_returns <- data.frame(matrix(rep(0, 84), ncol = 7, nrow = 12))
