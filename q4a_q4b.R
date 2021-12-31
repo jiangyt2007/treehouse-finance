@@ -38,3 +38,16 @@ result_var <- p * var95
 result_cvar <- p * cvar95
 print(paste("VaR95 = ", sum(result_var), sep = ""))
 print(paste("CVaR95 = ", sum(result_cvar), sep = ""))
+
+# weightages as matrix
+p_mat <- matrix(c(.15, .2, .2, .15, .1, .15, .05), ncol = 7)
+
+cov_mat <- matrix(cov(returns[-1,-1]), ncol = 7) # covariance matrix
+
+mean_returns <- colMeans(returns2[,-1])
+portfolio_mean_returns <- sum(p * mean_returns) # dot product
+portfolio_variance <- p_mat %*% cov_mat %*% t(p_mat)
+portfolio_sd <- sqrt(portfolio_variance)
+portfolio_var95 <- portfolio_mean_returns + qnorm(0.05) * portfolio_sd
+
+print(paste("Using covariance matrix, CVaR95 = ", portfolio_var95, sep = ""))
